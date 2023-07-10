@@ -10,6 +10,7 @@ const Form = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		setUsername("");
 
 		try {
 			const response = await fetch(`https://api.github.com/users/${username}`);
@@ -47,28 +48,44 @@ const Form = () => {
 					/>
 
 					<div className="flex justify-center items-center gap-10">
-						<div className="border-2 border-black w-[250px] flex flex-col gap-2 px-5 py-3 rounded-xl">
-							<h2>Name: {userData.name ? userData.name : `Not Available`}</h2>
-							<h2>
+						<div className="border-2 border-black w-auto flex flex-col gap-2 px-5 py-3 rounded-xl  flex-grow">
+							<h2 className="bg-gray-700 text-white  px-5 py-2.5 rounded-lg text-xl flex-1">
+								Name: {userData.name ? userData.name : `Not Available`}
+							</h2>
+							<h2 className="bg-gray-700 text-white  px-5 py-2.5 rounded-lg text-lg flex-1">
 								Location:{" "}
 								{userData.location ? userData.location : `Not Available`}
 							</h2>
-							<h2>
-								Follower:{" "}
+							<h2 className="bg-gray-700 text-white  px-5 py-2.5 rounded-lg text-lg flex-1">
+								Followers:{" "}
 								{userData.followers ? userData.followers : `Not Available`}
 							</h2>
 						</div>
-						<div className="border-2 border-black w-[250px] flex flex-col gap-2 px-5 py-3 rounded-xl">
-							<h2>
-								Portfolio: {userData.blog ? userData.blog : `Not Available`}
+						<div className="border-2 border-black w-[300px] flex flex-col gap-2 px-5 py-3 rounded-xl  flex-grow">
+							<h2 className="bg-gray-700 text-white  px-5 py-2.5 rounded-lg text-lg flex-1">
+								Portfolio:{" "}
+								{userData.blog ? (
+									<a
+										className="text-red-400"
+										target="_blank"
+										href={userData.blog}
+										rel="noreferrer"
+									>
+										Portfolio Link
+									</a>
+								) : (
+									`Not Available`
+								)}
 							</h2>
-							<h2>
+							<h2 className="bg-gray-700 text-white  px-5 py-2.5 rounded-lg text-lg flex-1">
 								Public Repos:{" "}
 								{userData.public_repos
 									? userData.public_repos
 									: `Not Available`}
 							</h2>
-							<h2>Bio: {userData.bio ? userData.bio : `Not Available`}</h2>
+							<h2 className="bg-gray-700 text-white  px-5 py-2.5 rounded-lg text-lg flex-1">
+								Bio: {userData.bio ? userData.bio : `Not Available`}
+							</h2>
 						</div>
 					</div>
 				</div>
